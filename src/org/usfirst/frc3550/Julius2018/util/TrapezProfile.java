@@ -24,7 +24,7 @@ public class TrapezProfile{
                     stateList.get(i+1)));
         }
     }
-    TrapezProfile(){
+    public TrapezProfile(){
     }
     public MotionProfile getGeneratedProfile(){
         if(generatedProfile.isValid())
@@ -66,7 +66,7 @@ public class TrapezProfile{
         }
         stateListToMotionProfile();
     }
-    TrapezProfile(double accelSlope, double distance, double maxSpeed, double currentSpeed){
+    public TrapezProfile(double accelSlope, double distance, double maxSpeed, double currentSpeed){
        createTrapezProfile(accelSlope, distance, maxSpeed, currentSpeed);
     }
     public MotionProfile generateProfile(double accelSlope, double distance, double maxSpeed, double currentSpeed){

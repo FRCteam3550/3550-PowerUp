@@ -207,69 +207,70 @@ public class Robot extends IterativeRobot {
     @Override
     public void autonomousInit() {
     	System.out.println("start autonomousInit");
+    	autonomousCommand = new TrapezDistance();
+    	autonomousCommand.start();
     	
-    	
-	    //
-		// Retrieve selected choices for the autonomous command
-    	//
-   	    Command CommandeBrutAutoCommand = (Command)CommandeBrutAuto.getSelected();
-		int PositionRobotAutoIndex      = (Integer)PositionRobotAuto.getSelected();
-		int ActionAutonomeIndex         = (Integer)ActionAutonome.getSelected();
-		
-		String tempGameData = DriverStation.getInstance().getGameSpecificMessage();
-		int CoteBasculeAuto = 0;  // Default 0 = 'L'
-		if (tempGameData.charAt(0) == 'R')
-		{
-			CoteBasculeAuto = 1;
-		}
-		//
-		int CoteBalanceAuto = 0;  // Default 0 = 'L'
-		if (tempGameData.charAt(1) == 'R')
-		{
-			CoteBalanceAuto = 2;
-		}
-		int configurationCotes = CoteBasculeAuto + CoteBalanceAuto;
-		
-		//
-		// Selecting desired autonomous command
-		//
-        if (PositionRobotAutoIndex != 0) // Pas ManualOveride...
-		{
-			// Combine values to retrieve Command id
-			int commandIndex = PositionRobotAutoIndex + ActionAutonomeIndex + configurationCotes;
-			System.out.println("Combining posindex= "+ PositionRobotAutoIndex + 
-					           " + obj= " + ActionAutonomeIndex + " + cotes= " + configurationCotes + 
-					           " into " + commandIndex);
-			
-			autonomousCommand = autonomousCommandArray[commandIndex];
-		}
-		else if (PositionRobotAutoIndex == 0 && CommandeBrutAutoCommand != null ) 
-		{
-			autonomousCommand = CommandeBrutAutoCommand;
-		}
-		else 
-		{
-			System.out.println("An impossible error occurred at the Autonomous Command Choosing step (How did you?!?)");
-			System.out.println("Setting autonomousCommand null");
-			System.out.println("But really, please find the impossible error and fix it!");
-			System.out.println("This error means that CommandeBrutAutoCommand or ActionAutonomeIndex is equals to null");
-			System.out.println("This error is in Robot.java");
-			System.out.println("Hopes that help fixing the _impossible_ error... ~Nathan");
-			//System.out.println("And yes, I have too much time on my hand");
-		}
-		
-		//
-		//
-		//
-		if (autonomousCommand != null)
-		{
-			System.out.println("Starting Action");
-			autonomousCommand.start();
-		}
-		else
-		{
-		    System.out.println("Not an existing action");
-		}
+//	    //
+//		// Retrieve selected choices for the autonomous command
+//    	//
+//   	    Command CommandeBrutAutoCommand = (Command)CommandeBrutAuto.getSelected();
+//		int PositionRobotAutoIndex      = (Integer)PositionRobotAuto.getSelected();
+//		int ActionAutonomeIndex         = (Integer)ActionAutonome.getSelected();
+//		
+//		String tempGameData = DriverStation.getInstance().getGameSpecificMessage();
+//		int CoteBasculeAuto = 0;  // Default 0 = 'L'
+//		if (tempGameData.charAt(0) == 'R')
+//		{
+//			CoteBasculeAuto = 1;
+//		}
+//		//
+//		int CoteBalanceAuto = 0;  // Default 0 = 'L'
+//		if (tempGameData.charAt(1) == 'R')
+//		{
+//			CoteBalanceAuto = 2;
+//		}
+//		int configurationCotes = CoteBasculeAuto + CoteBalanceAuto;
+//		
+//		//
+//		// Selecting desired autonomous command
+//		//
+//        if (PositionRobotAutoIndex != 0) // Pas ManualOveride...
+//		{
+//			// Combine values to retrieve Command id
+//			int commandIndex = PositionRobotAutoIndex + ActionAutonomeIndex + configurationCotes;
+//			System.out.println("Combining posindex= "+ PositionRobotAutoIndex + 
+//					           " + obj= " + ActionAutonomeIndex + " + cotes= " + configurationCotes + 
+//					           " into " + commandIndex);
+//			
+//			autonomousCommand = autonomousCommandArray[commandIndex];
+//		}
+//		else if (PositionRobotAutoIndex == 0 && CommandeBrutAutoCommand != null ) 
+//		{
+//			autonomousCommand = CommandeBrutAutoCommand;
+//		}
+//		else 
+//		{
+//			System.out.println("An impossible error occurred at the Autonomous Command Choosing step (How did you?!?)");
+//			System.out.println("Setting autonomousCommand null");
+//			System.out.println("But really, please find the impossible error and fix it!");
+//			System.out.println("This error means that CommandeBrutAutoCommand or ActionAutonomeIndex is equals to null");
+//			System.out.println("This error is in Robot.java");
+//			System.out.println("Hopes that help fixing the _impossible_ error... ~Nathan");
+//			//System.out.println("And yes, I have too much time on my hand");
+//		}
+//		
+//		//
+//		//
+//		//
+//		if (autonomousCommand != null)
+//		{
+//			System.out.println("Starting Action");
+//			autonomousCommand.start();
+//		}
+//		else
+//		{
+//		    System.out.println("Not an existing action");
+//		}
        
     }
 

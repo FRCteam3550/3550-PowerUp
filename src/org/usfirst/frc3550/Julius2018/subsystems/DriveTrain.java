@@ -81,6 +81,9 @@ public class DriveTrain extends Subsystem {
 	public void arcadeDrive(Joystick stick) {
 		robotDrive41.arcadeDrive(stick.getX(), -stick.getY());
 	}
+	public void arcadeDrive(double speed, double rotation) {
+		robotDrive41.arcadeDrive(speed, rotation);
+	}
 
 	/**
 	 * Interface to Trapez.
