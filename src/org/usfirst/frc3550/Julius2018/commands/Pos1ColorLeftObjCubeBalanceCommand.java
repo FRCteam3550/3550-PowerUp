@@ -29,7 +29,7 @@
 //    	addSequential(new DriveDistanceCommand(325, 1)); // 0:Backward / 1:Forward
 //    	addSequential(new RotateController(90, 1)); // 0:Left     / 1:Right
 //    	addSequential(new DriveDistanceCommand(7, 1));
-//    	addSequential(new OuvrePince());
+//    	addSequential(new DropCubeCommand());
 //    }
 //
 //    // Called just before this Command runs the first time
