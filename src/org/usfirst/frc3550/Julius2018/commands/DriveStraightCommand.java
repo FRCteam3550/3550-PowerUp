@@ -11,9 +11,13 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class DriveStraightCommand extends Command {
+	
 	private PIDController m_pid;
-    public DriveStraightCommand(double distance) {
+    
+	public DriveStraightCommand(double distance) {
+    	// Use requires() here to declare subsystem dependencies
     	requires(Robot.driveTrain);
+    	
 		m_pid = new PIDController(4, 0, 0, new PIDSource() {
 			PIDSourceType m_sourceType = PIDSourceType.kDisplacement;
 
@@ -35,9 +39,6 @@ public class DriveStraightCommand extends Command {
 
 		m_pid.setAbsoluteTolerance(0.01);
 		m_pid.setSetpoint(distance);
-	
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
     // Called just before this Command runs the first time
@@ -45,7 +46,6 @@ public class DriveStraightCommand extends Command {
     	Robot.driveTrain.reset();
 		m_pid.reset();
 		m_pid.enable();
-
     }
 
     // Called repeatedly when this Command is scheduled to run

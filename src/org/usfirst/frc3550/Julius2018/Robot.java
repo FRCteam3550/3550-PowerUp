@@ -24,7 +24,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc3550.Julius2018.commands.*;
 import org.usfirst.frc3550.Julius2018.subsystems.*;
-//import org.usfirst.frc3550.Robotronix2017.commands.ForwardWithEncoderTurnCommand;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -206,72 +206,75 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void autonomousInit() {
+    	// TMP: Testing Trapez command directly
     	System.out.println("start autonomousInit");
     	autonomousCommand = new TrapezDistance();
     	autonomousCommand.start();
     	
-//	    //
-//		// Retrieve selected choices for the autonomous command
-//    	//
-//   	    Command CommandeBrutAutoCommand = (Command)CommandeBrutAuto.getSelected();
-//		int PositionRobotAutoIndex      = (Integer)PositionRobotAuto.getSelected();
-//		int ActionAutonomeIndex         = (Integer)ActionAutonome.getSelected();
-//		
-//		String tempGameData = DriverStation.getInstance().getGameSpecificMessage();
-//		int CoteBasculeAuto = 0;  // Default 0 = 'L'
-//		if (tempGameData.charAt(0) == 'R')
-//		{
-//			CoteBasculeAuto = 1;
-//		}
-//		//
-//		int CoteBalanceAuto = 0;  // Default 0 = 'L'
-//		if (tempGameData.charAt(1) == 'R')
-//		{
-//			CoteBalanceAuto = 2;
-//		}
-//		int configurationCotes = CoteBasculeAuto + CoteBalanceAuto;
-//		
-//		//
-//		// Selecting desired autonomous command
-//		//
-//        if (PositionRobotAutoIndex != 0) // Pas ManualOveride...
-//		{
-//			// Combine values to retrieve Command id
-//			int commandIndex = PositionRobotAutoIndex + ActionAutonomeIndex + configurationCotes;
-//			System.out.println("Combining posindex= "+ PositionRobotAutoIndex + 
-//					           " + obj= " + ActionAutonomeIndex + " + cotes= " + configurationCotes + 
-//					           " into " + commandIndex);
-//			
-//			autonomousCommand = autonomousCommandArray[commandIndex];
-//		}
-//		else if (PositionRobotAutoIndex == 0 && CommandeBrutAutoCommand != null ) 
-//		{
-//			autonomousCommand = CommandeBrutAutoCommand;
-//		}
-//		else 
-//		{
-//			System.out.println("An impossible error occurred at the Autonomous Command Choosing step (How did you?!?)");
-//			System.out.println("Setting autonomousCommand null");
-//			System.out.println("But really, please find the impossible error and fix it!");
-//			System.out.println("This error means that CommandeBrutAutoCommand or ActionAutonomeIndex is equals to null");
-//			System.out.println("This error is in Robot.java");
-//			System.out.println("Hopes that help fixing the _impossible_ error... ~Nathan");
-//			//System.out.println("And yes, I have too much time on my hand");
-//		}
-//		
-//		//
-//		//
-//		//
-//		if (autonomousCommand != null)
-//		{
-//			System.out.println("Starting Action");
-//			autonomousCommand.start();
-//		}
-//		else
-//		{
-//		    System.out.println("Not an existing action");
-//		}
-       
+    	if (true)
+    	   return;
+    	
+	    //
+		// Retrieve selected choices for the autonomous command
+    	//
+   	    Command CommandeBrutAutoCommand = (Command)CommandeBrutAuto.getSelected();
+		int PositionRobotAutoIndex      = (Integer)PositionRobotAuto.getSelected();
+		int ActionAutonomeIndex         = (Integer)ActionAutonome.getSelected();
+		
+		String tempGameData = DriverStation.getInstance().getGameSpecificMessage();
+		int CoteBasculeAuto = 0;  // Default 0 = 'L'
+		if (tempGameData.charAt(0) == 'R')
+		{
+			CoteBasculeAuto = 1;
+		}
+		//
+		int CoteBalanceAuto = 0;  // Default 0 = 'L'
+		if (tempGameData.charAt(1) == 'R')
+		{
+			CoteBalanceAuto = 2;
+		}
+		int configurationCotes = CoteBasculeAuto + CoteBalanceAuto;
+		
+		//
+		// Selecting desired autonomous command
+		//
+        if (PositionRobotAutoIndex != 0) // Pas ManualOveride...
+		{
+   		    // Combine values to retrieve Command id
+			int commandIndex = PositionRobotAutoIndex + ActionAutonomeIndex + configurationCotes;
+			System.out.println("Combining posindex= "+ PositionRobotAutoIndex + 
+					           " + obj= " + ActionAutonomeIndex + " + cotes= " + configurationCotes + 
+					           " into " + commandIndex);
+			
+			autonomousCommand = autonomousCommandArray[commandIndex];
+		}
+		else if (PositionRobotAutoIndex == 0 && CommandeBrutAutoCommand != null ) 
+		{
+			autonomousCommand = CommandeBrutAutoCommand;
+		}
+		else 
+		{
+			System.out.println("An impossible error occurred at the Autonomous Command Choosing step (How did you?!?)");
+			System.out.println("Setting autonomousCommand null");
+			System.out.println("But really, please find the impossible error and fix it!");
+			System.out.println("This error means that CommandeBrutAutoCommand or ActionAutonomeIndex is equals to null");
+			System.out.println("This error is in Robot.java");
+			System.out.println("Hopes that help fixing the _impossible_ error... ~Nathan");
+			//System.out.println("And yes, I have too much time on my hand");
+		}
+		
+		//
+		//
+		//
+		if (autonomousCommand != null)
+		{
+			System.out.println("Starting Action");
+			autonomousCommand.start();
+		}
+		else
+		{
+		    System.out.println("Not an existing action");
+		}       
     }
 
     /**
@@ -338,7 +341,7 @@ public class Robot extends IterativeRobot {
 		// IN SAME ORDER AS IN THE EXCEL STRATEGIC PLAN
 		//
 		
-		autonomousCommandArray[calcID(1, 0, 1)] = new Autoline();//PosXColorXObjAutolineCommand();
+		autonomousCommandArray[calcID(1, 0, 1)] = new PosXColorXObjAutolineCommand();
 		autonomousCommandArray[calcID(1, 2, 1)] = autonomousCommandArray[calcID(1, 0, 1)];
 		//
 		//autonomousCommandArray[calcID(2, 0, 1)] = autonomousCommandArray[calcID(1, 0, 1)]; // Not used
@@ -363,57 +366,57 @@ public class Robot extends IterativeRobot {
 		autonomousCommandArray[calcID(4, 3, 1)] = autonomousCommandArray[calcID(1, 0, 1)];
 		//
 		//
-//		autonomousCommandArray[calcID(1, 0, 2)] = new Pos1ColorLeftObjCubeBasculeCommand();
-//		autonomousCommandArray[calcID(1, 2, 2)] = autonomousCommandArray[calcID(1, 0, 2)];
-//		//
-//		autonomousCommandArray[calcID(2, 0, 2)] = new Pos2ColorLeftObjCubeBascule1Command();
-//		autonomousCommandArray[calcID(2, 2, 2)] = autonomousCommandArray[calcID(2, 0, 2)];
-//		autonomousCommandArray[calcID(2, 0, 3)] = new Pos2ColorLeftObjCubeBascule2Command();
-//		autonomousCommandArray[calcID(2, 2, 3)] = autonomousCommandArray[calcID(2, 0, 3)];
-//		//
-//		autonomousCommandArray[calcID(3, 0, 2)] = new Pos3ColorLeftObjCubeBasculeCommand();
-//		autonomousCommandArray[calcID(3, 2, 2)] = autonomousCommandArray[calcID(3, 0, 2)];
-//		//
-//		autonomousCommandArray[calcID(4, 0, 2)] = new Pos4ColorLeftObjCubeBasculeCommand();
-//		autonomousCommandArray[calcID(4, 2, 2)] = autonomousCommandArray[calcID(4, 0, 2)];
-//		//
-//		autonomousCommandArray[calcID(1, 1, 2)] = new Pos1ColorRightObjCubeBasculeCommand();
-//		autonomousCommandArray[calcID(1, 3, 2)] = autonomousCommandArray[calcID(1, 1, 2)];
-//		//
-//		autonomousCommandArray[calcID(2, 1, 2)] = new Pos2ColorRightObjCubeBascule1Command();
-//		autonomousCommandArray[calcID(2, 3, 2)] = autonomousCommandArray[calcID(2, 1, 2)];
-//		autonomousCommandArray[calcID(2, 1, 3)] = new Pos2ColorRightObjCubeBascule2Command();
-//		autonomousCommandArray[calcID(2, 3, 3)] = autonomousCommandArray[calcID(2, 1, 3)];
-//		//
-//		autonomousCommandArray[calcID(3, 1, 2)] = new Pos3ColorRightObjCubeBasculeCommand();
-//		autonomousCommandArray[calcID(3, 3, 2)] = autonomousCommandArray[calcID(3, 1, 2)];
-//		//
-//		autonomousCommandArray[calcID(4, 1, 2)] = new Pos4ColorRightObjCubeBasculeCommand();
-//		autonomousCommandArray[calcID(4, 3, 2)] = autonomousCommandArray[calcID(4, 1, 2)];
-//		//
-//		//
-//		autonomousCommandArray[calcID(1, 0, 4)] = new Pos1ColorLeftObjCubeBalanceCommand();
-//		autonomousCommandArray[calcID(1, 1, 4)] = autonomousCommandArray[calcID(1, 0, 4)];
-//		//
-//		//autonomousCommandArray[calcID(2, 0, 4)] = new DummyCommand(2);                     // Not used
-//		//autonomousCommandArray[calcID(2, 1, 4)] = autonomousCommandArray[calcID(2, 0, 4)]; // Not used
-//		//
-//		//autonomousCommandArray[calcID(3, 0, 4)] = new DummyCommand(3);                     // Not used
-//		//autonomousCommandArray[calcID(3, 1, 4)] = autonomousCommandArray[calcID(3, 0, 4)]; // Not used
-//		//
-//		autonomousCommandArray[calcID(4, 0, 4)] = new Pos4ColorLeftObjCubeBalanceCommand();
-//		autonomousCommandArray[calcID(4, 1, 4)] = autonomousCommandArray[calcID(4, 0, 4)];
-//		//
-//		autonomousCommandArray[calcID(1, 2, 4)] = new Pos1ColorRightObjCubeBalanceCommand();
-//		autonomousCommandArray[calcID(1, 3, 4)] = autonomousCommandArray[calcID(1, 2, 4)];
-//		//
-//		//autonomousCommandArray[calcID(2, 2, 4)] = new DummyCommand(2);                     // Not used
-//		//autonomousCommandArray[calcID(2, 3, 4)] = autonomousCommandArray[calcID(2, 2, 4)]; // Not used
-//		//
-//		//autonomousCommandArray[calcID(3, 2, 4)] = new DummyCommand(3);                     // Not used
-//		//autonomousCommandArray[calcID(3, 3, 4)] = autonomousCommandArray[calcID(3, 2, 4)]; // Not used
-//		//
-//		autonomousCommandArray[calcID(4, 2, 4)] = new Pos4ColorRightObjCubeBalanceCommand();
-//		autonomousCommandArray[calcID(4, 3, 4)] = autonomousCommandArray[calcID(4, 2, 4)];
+		autonomousCommandArray[calcID(1, 0, 2)] = new Pos1ColorLeftObjCubeBasculeCommand();
+		autonomousCommandArray[calcID(1, 2, 2)] = autonomousCommandArray[calcID(1, 0, 2)];
+		//
+		autonomousCommandArray[calcID(2, 0, 2)] = new Pos2ColorLeftObjCubeBascule1Command();
+		autonomousCommandArray[calcID(2, 2, 2)] = autonomousCommandArray[calcID(2, 0, 2)];
+		autonomousCommandArray[calcID(2, 0, 3)] = new Pos2ColorLeftObjCubeBascule2Command();
+		autonomousCommandArray[calcID(2, 2, 3)] = autonomousCommandArray[calcID(2, 0, 3)];
+		//
+		autonomousCommandArray[calcID(3, 0, 2)] = new Pos3ColorLeftObjCubeBasculeCommand();
+		autonomousCommandArray[calcID(3, 2, 2)] = autonomousCommandArray[calcID(3, 0, 2)];
+		//
+		autonomousCommandArray[calcID(4, 0, 2)] = new Pos4ColorLeftObjCubeBasculeCommand();
+		autonomousCommandArray[calcID(4, 2, 2)] = autonomousCommandArray[calcID(4, 0, 2)];
+		//
+		autonomousCommandArray[calcID(1, 1, 2)] = new Pos1ColorRightObjCubeBasculeCommand();
+		autonomousCommandArray[calcID(1, 3, 2)] = autonomousCommandArray[calcID(1, 1, 2)];
+		//
+		autonomousCommandArray[calcID(2, 1, 2)] = new Pos2ColorRightObjCubeBascule1Command();
+		autonomousCommandArray[calcID(2, 3, 2)] = autonomousCommandArray[calcID(2, 1, 2)];
+		autonomousCommandArray[calcID(2, 1, 3)] = new Pos2ColorRightObjCubeBascule2Command();
+		autonomousCommandArray[calcID(2, 3, 3)] = autonomousCommandArray[calcID(2, 1, 3)];
+		//
+		autonomousCommandArray[calcID(3, 1, 2)] = new Pos3ColorRightObjCubeBasculeCommand();
+		autonomousCommandArray[calcID(3, 3, 2)] = autonomousCommandArray[calcID(3, 1, 2)];
+		//
+		autonomousCommandArray[calcID(4, 1, 2)] = new Pos4ColorRightObjCubeBasculeCommand();
+		autonomousCommandArray[calcID(4, 3, 2)] = autonomousCommandArray[calcID(4, 1, 2)];
+		//
+		//
+		autonomousCommandArray[calcID(1, 0, 4)] = new Pos1ColorLeftObjCubeBalanceCommand();
+		autonomousCommandArray[calcID(1, 1, 4)] = autonomousCommandArray[calcID(1, 0, 4)];
+		//
+		//autonomousCommandArray[calcID(2, 0, 4)] = new DummyCommand(2);                     // Not used
+		//autonomousCommandArray[calcID(2, 1, 4)] = autonomousCommandArray[calcID(2, 0, 4)]; // Not used
+		//
+		//autonomousCommandArray[calcID(3, 0, 4)] = new DummyCommand(3);                     // Not used
+		//autonomousCommandArray[calcID(3, 1, 4)] = autonomousCommandArray[calcID(3, 0, 4)]; // Not used
+		//
+		autonomousCommandArray[calcID(4, 0, 4)] = new Pos4ColorLeftObjCubeBalanceCommand();
+		autonomousCommandArray[calcID(4, 1, 4)] = autonomousCommandArray[calcID(4, 0, 4)];
+		//
+		autonomousCommandArray[calcID(1, 2, 4)] = new Pos1ColorRightObjCubeBalanceCommand();
+		autonomousCommandArray[calcID(1, 3, 4)] = autonomousCommandArray[calcID(1, 2, 4)];
+		//
+		//autonomousCommandArray[calcID(2, 2, 4)] = new DummyCommand(2);                     // Not used
+		//autonomousCommandArray[calcID(2, 3, 4)] = autonomousCommandArray[calcID(2, 2, 4)]; // Not used
+		//
+		//autonomousCommandArray[calcID(3, 2, 4)] = new DummyCommand(3);                     // Not used
+		//autonomousCommandArray[calcID(3, 3, 4)] = autonomousCommandArray[calcID(3, 2, 4)]; // Not used
+		//
+		autonomousCommandArray[calcID(4, 2, 4)] = new Pos4ColorRightObjCubeBalanceCommand();
+		autonomousCommandArray[calcID(4, 3, 4)] = autonomousCommandArray[calcID(4, 2, 4)];
 	}
 }
