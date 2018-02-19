@@ -1,5 +1,5 @@
 package org.usfirst.frc3550.Julius2018.util;
-import java.lang.*;
+
 import java.util.*;
 
 public class MotionProfile{

@@ -1,6 +1,5 @@
 package org.usfirst.frc3550.Julius2018.util;
 
-import java.lang.*;
 import java.util.*;
 
 
@@ -15,10 +14,10 @@ public class TrapezProfile{
     boolean isCruising = true;
 
     MotionProfile generatedProfile;
-    ArrayList<DriveState> stateList;
+    ArrayList<DriveState> stateList = new ArrayList<>();
 
     public void stateListToMotionProfile(){
-        MotionProfile generatedProfile = new MotionProfile();
+        generatedProfile = new MotionProfile();
         for(int i=0; i+1 < stateList.size(); i++){
             generatedProfile.segments.add(new MotionSegment(stateList.get(i),
                     stateList.get(i+1)));

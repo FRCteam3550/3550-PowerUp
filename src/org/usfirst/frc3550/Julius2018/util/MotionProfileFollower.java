@@ -1,6 +1,4 @@
 package org.usfirst.frc3550.Julius2018.util;
-import java.lang.*;
-import java.util.*;
 
 public class MotionProfileFollower{
     MotionProfile profile;
@@ -33,7 +31,10 @@ public class MotionProfileFollower{
     public boolean isFinishedTime(double time){
         MotionSegment lastSegment = profile.segments.get(profile.segments.size() - 1);
         DriveState finalDriveState = lastSegment.endState;
-        return isWithinEpsilon(finalDriveState.time - time);
+        if(time + EPSILON_VALUE >= lastSegment.endState.time)
+            return true;
+        else
+            return false;
     }
     public boolean isFinishedDistance(double pos){
         MotionSegment lastSegment = profile.segments.get(profile.segments.size() - 1);

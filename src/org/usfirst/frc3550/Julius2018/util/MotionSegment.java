@@ -1,6 +1,4 @@
 package org.usfirst.frc3550.Julius2018.util;
-import java.lang.*;
-import java.util.*;
 
 public class MotionSegment{
     public static double EPSILON_VALUE = 0.0001;
@@ -31,7 +29,7 @@ public class MotionSegment{
 
     public MotionSegment(DriveState startState, DriveState endState){
         this.startState = startState;
-        this.startState = startState;
+        this.endState = endState;
     }
 
     public void setStart(DriveState startState){
